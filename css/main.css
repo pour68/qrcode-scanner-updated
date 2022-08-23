@@ -1,0 +1,121 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+.container {
+    width: 100%;
+    min-height: 100vh;
+    padding: 1.5rem 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #222;
+    gap: 5rem;
+}
+
+.content {
+    position: relative;
+    width: 400px;
+    height: 400px;
+}
+
+/* line */
+.content::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    box-shadow: 0 0 10px #35fd5c,
+        0 0 30px #35fd5c, 0 0 50px #35fd5c;
+}
+
+/* border */
+.content::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url(../img/border.png);
+    background-size: cover;
+    animation: blink 0.25s linear infinite alternate;
+}
+
+.content-1::before {
+    animation: updown 4s ease-in-out infinite alternate;
+}
+
+.content-2::before {
+    animation: updownLine 4s ease-in-out infinite alternate;
+}
+
+.deactivate-qrcode {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url(../img/deactivate-qrcode.png);
+    background-size: cover;
+    z-index: 1;
+}
+
+.active-qrcode {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 0;
+    background-image: url(../img/active-qrcode.png);
+    background-size: cover;
+    z-index: 100;
+    animation: updown 4s ease-in-out infinite alternate;
+}
+
+@keyframes updown {
+    0% {
+        height: 0;
+    }
+
+    50% {
+        height: 100%;
+    }
+}
+
+@keyframes updownLine {
+    0% {
+        top: 0;
+    }
+
+    50% {
+        top: 100%;
+    }
+}
+
+@keyframes blink {
+    0% {
+        opacity: 0;
+    }
+
+    50% {
+        opacity: 1;
+    }
+}
+
+@media (max-width: 820px) {
+    .container {
+        flex-direction: column;
+    }
+}
+
+@media (max-width: 400px) {
+    .content {
+        width: 290px;
+        height: 290px;
+    }
+}
